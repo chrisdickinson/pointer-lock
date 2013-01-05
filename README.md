@@ -60,11 +60,17 @@ pointer.on('needs-fullscreen', function() {
   fs.request()
 })
 
+// request pointer lock: warning, may require being called from a mouse event listener
+pointer.request()
+
 // releases the pointer lock session, if any.
 pointer.release()
 
 // current pointer lock element, if any.
 pointer.target()
+
+// remove the mouse event listeners added by lock
+pointer.destroy()
 
 ```
 
