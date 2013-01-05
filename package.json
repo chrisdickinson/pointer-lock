@@ -1,6 +1,6 @@
 {
   "name": "pointer-lock",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "pointer lock polyfill that presents an eventemitter / stream api",
   "main": "index.js",
   "directories": {

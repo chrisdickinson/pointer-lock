@@ -87,10 +87,11 @@ function pointer(el) {
       return
     }
 
+    ee.emit('error')
     if(stream) {
       stream.emit('error', ev)
-      stream = null
     }
+    stream = null
   }
 
   function release() {
