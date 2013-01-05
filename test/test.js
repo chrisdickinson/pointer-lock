@@ -1,4 +1,4 @@
-var lock = require('./index')
+var lock = require('../index')
   , rfs = require('fullscreen')
   , pointer
   , fs
