@@ -13,6 +13,9 @@ var lock = require('pointer-lock')
 if(!lock.available())
   return alert('not available!')
 
+// my_element can be any element currently attached to
+// the document -- but not the document itself (document.body on down
+// is fine.)
 var pointer = lock(my_element)
 
 pointer.on('attain', function(movements) {
@@ -24,6 +27,7 @@ pointer.on('attain', function(movements) {
     // as the move object is reused.
     initial.x += move.dx
     initial.y += move.dy
+    initial.t += move.dt
   })
 
   movements.on('close', function() {
