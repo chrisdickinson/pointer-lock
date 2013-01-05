@@ -14,7 +14,7 @@ function pointer(el) {
     , doc = el.ownerDocument
     , body = doc.body
     , rpl = shim(el) 
-    , out = {dx: 0, dy: 0}
+    , out = {dx: 0, dy: 0, dt: 0}
     , ee = new EE
     , stream = null
     , lastPageX, lastPageY
@@ -68,7 +68,7 @@ function pointer(el) {
 
     stream = new Stream
     stream.readable = true
-    stream.initial = {x: lastPageX, y: lastPageY}
+    stream.initial = {x: lastPageX, y: lastPageY, t: Date.now()}
 
     ee.emit('attain', stream)
   }
@@ -128,6 +128,8 @@ function pointer(el) {
       ev.movementY || ev.webkitMovementY ||
       ev.mozMovementY || ev.msMovementY ||
       ev.oMovementY || 0
+
+    out.dt = Date.now() - stream.initial.t
 
     ee.emit('data', out)
     stream.emit('data', out)
