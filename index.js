@@ -11,6 +11,7 @@ function available() {
 
 function pointer(el) {
   var ael = el.addEventListener || el.attachEvent
+    , rel = el.removeEventListener || el.detachEvent
     , doc = el.ownerDocument
     , body = doc.body
     , rpl = shim(el) 
@@ -35,6 +36,11 @@ function pointer(el) {
   ee.release = release
   ee.target = pointerlockelement
   ee.request = onmousedown
+  ee.destroy = function() {
+    rel.call(el, 'mouseup', onmouseup, false)
+    rel.call(el, 'mousedown', onmousedown, false)
+    rel.call(el, 'mousemove', onmove, false)
+  }
 
   if(!shim) {
     setTimeout(function() {
